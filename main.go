@@ -59,6 +59,6 @@ func JSON(w http.ResponseWriter, obj interface{}) {
 
 // JSONError sends a 500 with the error.
 func JSONError(w http.ResponseWriter, err error) {
-	w.WriteHeader(500)
 	JSON(w, map[string]string{"error": fmt.Sprintf("%v", err)})
+	w.WriteHeader(500)
 }
