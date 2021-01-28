@@ -50,11 +50,13 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
+// JSON encodes the object and writes it to the response.
 func JSON(w http.ResponseWriter, obj interface{}) {
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(obj)
 }
 
+// JSONError sends a 500 with the error.
 func JSONError(w http.ResponseWriter, err error) {
 	w.WriteHeader(500)
 	JSON(w, map[string]string{"error": fmt.Sprintf("%v", err)})

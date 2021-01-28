@@ -12,6 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// ToDo is a task stored in the database.
 type ToDo struct {
 	gorm.Model
 	Task string
