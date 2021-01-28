@@ -45,6 +45,7 @@ func main() {
 	tr := &todosResource{
 		db: db,
 	}
+	tr.db.AutoMigrate(&ToDo{})
 	r.Mount("/todos", tr.Routes())
 
 	log.Fatal(http.ListenAndServe(":"+port, r))
