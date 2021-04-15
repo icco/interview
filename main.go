@@ -25,7 +25,7 @@ func main() {
 	if fromEnv := os.Getenv("PORT"); fromEnv != "" {
 		port = fromEnv
 	}
-	log.Printf("Starting up on http://localhost:%s", port)
+	log.Infow("Starting up", "host", fmt.Sprintf("http://localhost:%s", port))
 
 	r := chi.NewRouter()
 	r.Use(middleware.RealIP)
