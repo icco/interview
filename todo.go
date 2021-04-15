@@ -3,12 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
 
@@ -54,7 +54,7 @@ func (rs *todosResource) List(w http.ResponseWriter, r *http.Request) {
 func (rs *todosResource) Create(w http.ResponseWriter, r *http.Request) {
 	t := &ToDo{}
 	if err := json.NewDecoder(r.Body).Decode(t); err != nil {
-		log.Printf("could not decode: %+v", err)
+		log.Errorw("could not decode", zap.Error(err))
 		JSONError(w, fmt.Errorf("couldn't decode json"))
 		return
 	}
@@ -71,7 +71,7 @@ func (rs *todosResource) Create(w http.ResponseWriter, r *http.Request) {
 func (rs *todosResource) Get(w http.ResponseWriter, r *http.Request) {
 	u, err := strconv.ParseUint(chi.URLParam(r, "id"), 10, 32)
 	if err != nil {
-		log.Printf("could not parse id: %v", err)
+		log.Errorw("could not parse id", zap.Error(err))
 		JSONError(w, err)
 		return
 	}
@@ -88,14 +88,14 @@ func (rs *todosResource) Get(w http.ResponseWriter, r *http.Request) {
 func (rs *todosResource) Update(w http.ResponseWriter, r *http.Request) {
 	u, err := strconv.ParseUint(chi.URLParam(r, "id"), 10, 32)
 	if err != nil {
-		log.Printf("could not parse id: %v", err)
+		log.Errorw("could not parse id", zap.Error(err))
 		JSONError(w, err)
 		return
 	}
 
 	t := &ToDo{}
 	if err := json.NewDecoder(r.Body).Decode(t); err != nil {
-		log.Printf("could not decode: %+v", err)
+		log.Errorw("could not decode", zap.Error(err))
 		JSONError(w, fmt.Errorf("couldn't decode json"))
 		return
 	}
@@ -113,7 +113,7 @@ func (rs *todosResource) Update(w http.ResponseWriter, r *http.Request) {
 func (rs *todosResource) Delete(w http.ResponseWriter, r *http.Request) {
 	u, err := strconv.ParseUint(chi.URLParam(r, "id"), 10, 32)
 	if err != nil {
-		log.Printf("could not parse id: %v", err)
+		log.Errorw("could not parse id", zap.Error(err))
 		JSONError(w, err)
 		return
 	}

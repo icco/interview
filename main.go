@@ -3,14 +3,21 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/icco/gutil/logging"
+	"go.uber.org/zap"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+)
+
+var (
+	service = "interview"
+	project = "icco-cloud"
+	log     = logging.Must(logging.NewLogger(service))
 )
 
 func main() {
@@ -21,10 +28,8 @@ func main() {
 	log.Printf("Starting up on http://localhost:%s", port)
 
 	r := chi.NewRouter()
-	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
-	r.Use(middleware.Logger)
-	r.Use(middleware.Recoverer)
+	r.Use(logging.Middleware(log.Desugar(), project))
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
@@ -40,7 +45,7 @@ func main() {
 	}
 	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("db open: %+v", err)
+		log.Fatalw("db open", zap.Error(err))
 	}
 	tr := &todosResource{
 		db: db,
