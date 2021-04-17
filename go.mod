@@ -10,5 +10,6 @@ require (
 	go.uber.org/zap v1.16.0
 	golang.org/x/crypto v0.0.0-20210415154028-4f45737414dc // indirect
 	gorm.io/driver/postgres v1.0.8
-	gorm.io/gorm v1.21.7
+	gorm.io/gorm v1.21.8
+	moul.io/zapgorm2 v1.0.3
 )

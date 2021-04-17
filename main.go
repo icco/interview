@@ -12,6 +12,7 @@ import (
 	"go.uber.org/zap"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"moul.io/zapgorm2"
 )
 
 var (
@@ -27,6 +28,19 @@ func main() {
 	}
 	log.Infow("Starting up", "host", fmt.Sprintf("http://localhost:%s", port))
 
+	zgl := zapgorm2.New(log.Desugar())
+	zgl.SetAsDefault()
+	db, err := gorm.Open(postgres.Open(os.Getenv("DATABASE_URL")), &gorm.Config{
+		Logger: zgl,
+	})
+	if err != nil {
+		log.Fatalw("cannot connect to database server", zap.Error(err))
+	}
+
+	if err := db.AutoMigrate(&ToDo{}); err != nil {
+		log.Fatalw("cannot migrate todo", zap.Error(err))
+	}
+
 	r := chi.NewRouter()
 	r.Use(middleware.RealIP)
 	r.Use(logging.Middleware(log.Desugar(), project))
@@ -39,18 +53,7 @@ func main() {
 		w.Write([]byte("ok."))
 	})
 
-	dbURL := os.Getenv("DATABASE_URL")
-	if dbURL == "" {
-		log.Fatalf("DATABASE_URL is empty!")
-	}
-	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
-	if err != nil {
-		log.Fatalw("db open", zap.Error(err))
-	}
-	tr := &todosResource{
-		db: db,
-	}
-	tr.db.AutoMigrate(&ToDo{})
+	tr := &todosResource{db: db}
 	r.Mount("/todos", tr.Routes())
 
 	log.Fatal(http.ListenAndServe(":"+port, r))
