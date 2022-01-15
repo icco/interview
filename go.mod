@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/go-chi/chi/v5 v5.0.7
-	github.com/icco/gutil v0.0.0-20220115163816-b7b82159b0b6
+	github.com/icco/gutil v0.0.0-20220115170613-a57da700978e
 	github.com/jackc/pgx/v4 v4.14.1 // indirect
 	go.uber.org/zap v1.20.0
 	golang.org/x/crypto v0.0.0-20220112180741-5e0467b6c7ce // indirect
