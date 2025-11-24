@@ -7,7 +7,7 @@ toolchain go1.23.1
 require (
 	github.com/go-chi/chi/v5 v5.2.1
 	github.com/icco/gutil v0.0.0-20231226055340-e0dfddaad70c
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.27.1
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.30.0
 	moul.io/zapgorm2 v1.3.0
