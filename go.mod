@@ -5,7 +5,7 @@ go 1.24.0
 require (
 	github.com/go-chi/chi/v5 v5.2.5
 	github.com/icco/gutil v0.0.0-20250523221334-351f1696528b
-	go.uber.org/zap v1.27.1
+	go.uber.org/zap v1.28.0
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.31.1
 	moul.io/zapgorm2 v1.3.0
