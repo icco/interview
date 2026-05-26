@@ -3,7 +3,7 @@ module github.com/icco/interview
 go 1.25.0
 
 require (
-	github.com/go-chi/chi/v5 v5.2.5
+	github.com/go-chi/chi/v5 v5.3.0
 	github.com/icco/gutil v0.0.0-20250523221334-351f1696528b
 	go.uber.org/zap v1.28.0
 	gorm.io/driver/postgres v1.6.0
