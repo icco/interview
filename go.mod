@@ -7,7 +7,7 @@ require (
 	github.com/icco/gutil v0.0.0-20250523221334-351f1696528b
 	go.uber.org/zap v1.28.0
 	gorm.io/driver/postgres v1.6.0
-	gorm.io/gorm v1.31.1
+	gorm.io/gorm v1.31.2
 	moul.io/zapgorm2 v1.3.0
 )
 
