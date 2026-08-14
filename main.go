@@ -17,7 +17,6 @@ import (
 
 var (
 	service = "interview"
-	project = "icco-cloud"
 	log     = logging.Must(logging.NewLogger(service))
 )
 
@@ -43,7 +42,7 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.RealIP)
-	r.Use(logging.Middleware(log.Desugar(), project))
+	r.Use(logging.Middleware(log.Desugar()))
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
