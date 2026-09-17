@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/go-chi/chi/v5 v5.3.2
-	github.com/icco/gutil v1.0.18
+	github.com/icco/gutil v1.0.21
 	go.uber.org/zap v1.28.0
 	gorm.io/driver/postgres v1.6.2
 	gorm.io/gorm v1.31.2
@@ -23,5 +23,5 @@ require (
 	go.opentelemetry.io/otel/trace v1.46.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
-	golang.org/x/text v0.40.0 // indirect
+	golang.org/x/text v0.41.0 // indirect
 )
