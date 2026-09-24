@@ -6,7 +6,7 @@ require (
 	github.com/go-chi/chi/v5 v5.3.2
 	github.com/icco/gutil v1.0.21
 	go.uber.org/zap v1.28.0
-	gorm.io/driver/postgres v1.6.2
+	gorm.io/driver/postgres v1.6.3
 	gorm.io/gorm v1.31.2
 	moul.io/zapgorm2 v1.3.0
 )
