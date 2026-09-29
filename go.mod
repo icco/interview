@@ -1,4 +1,4 @@
-module github.com/icco/interview
+module go.icco.me/interview
 
 go 1.26.0
 
