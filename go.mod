@@ -1,10 +1,10 @@
-module github.com/icco/interview
+module go.icco.me/interview
 
 go 1.26.0
 
 require (
 	github.com/go-chi/chi/v5 v5.3.2
-	github.com/icco/gutil v1.0.25
+	go.icco.me/gutil v1.0.27-0.20260929105600-f3e11752b837
 	go.uber.org/zap v1.28.0
 	gorm.io/driver/postgres v1.6.3
 	gorm.io/gorm v1.31.2
