@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/go-chi/chi/v5 v5.5.0
-	go.icco.me/gutil v1.0.36
+	go.icco.me/gutil v1.0.39
 	go.uber.org/zap v1.28.0
 	gorm.io/driver/postgres v1.6.3
 	gorm.io/gorm v1.31.2
